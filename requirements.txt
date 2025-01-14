@@ -1,0 +1,7 @@
+newspaper4k 
+lxml[html_clean]
+pandas
+json
+numpy
+ollama
+scipy

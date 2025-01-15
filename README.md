@@ -12,12 +12,13 @@ pip install -r requirements.txt
 
 All the main files of this repository are under 'src/' folder:
 
-- data: it contains two csv files: the corpus of articles used in the simulation and a list of newsguard scores for several domains.
+- data: it contains three csv files: the corpus of articles used in the simulation, a list of newsguard scores for several domains and the actual Aslett's experiments search data.
 - sim.py: main file that models the entire simulation process.
 - figs/plot.py: script that generates Fig. 4 in the paper for evaluating NewsGuard Scores at different rank positions. It also runs stats tests at this different rank positions.
 - tests: folder that contains tests scripts for using Llama.
 - sim_output: output of the simulations evaluated in the paper.
-- analysis/stats_tests.py: script for computing the statistical tests reported in the paper.  
+- analysis/stats_tests.py: script for computing the statistical tests reported in the paper.
+- traditional_sim_methods: as referred in Section 4.1, we tested traditional simulation and newer simulation approaches, including methods oriented to sample queries from classic language models and neural techniques based on docT5query and keyBERT. However, they tended to produce queries drifting away from the topic of the source of the article.  
 
 ## PREREQUISITES
 

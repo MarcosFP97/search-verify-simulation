@@ -14,59 +14,59 @@ It also runs stats tests at this different rank positions
 '''
 
 results = {step: [] for step in range(1,6)}
-for f in os.listdir('./sim_output/title_snippet/bing-api/'):
+for f in os.listdir('../sim_output/H TS/bing-api/'):
   if f.startswith('session_title_snippet_steps'):
-    df = pd.read_csv('./sim_output/title_snippet/bing-api/'+f)
+    df = pd.read_csv('../sim_output/H TS/bing-api/'+f)
     dd = df.groupby("STEP")["SERP"].apply(list).to_dict()
     for step, values in dd.items():
       results[step].extend(values)
 #print(f'{results}')
 
 results_2 = {step: [] for step in range(1,6)}
-for f in os.listdir('./sim_output/paragraph_snippet/bing-api/'):
+for f in os.listdir('../sim_output/H 1P TS/bing-api/'):
   if f.startswith('session_paragraph_snippet_steps'):
-    df = pd.read_csv('./sim_output/paragraph_snippet/bing-api/'+f)
+    df = pd.read_csv('../sim_output/H 1P TS/bing-api/'+f)
     dd = df.groupby("STEP")["SERP"].apply(list).to_dict()
     for step, values in dd.items():
       results_2[step].extend(values)
 #print(f'{results_2}')
 
 results_3 = {step: [] for step in range(1,6)}
-for f in os.listdir('./sim_output/full_text_snippet/bing-api/'):
+for f in os.listdir('../sim_output/FT TS/bing-api/'):
   if f.startswith('session_full_text_snippet_steps'):
-    df = pd.read_csv('./sim_output/full_text_snippet/bing-api/'+f)
+    df = pd.read_csv('../sim_output/FT TS/bing-api/'+f)
     dd = df.groupby("STEP")["SERP"].apply(list).to_dict()
     for step, values in dd.items():
       results_3[step].extend(values)
 
 results_4 = {step: [] for step in range(1,6)}
-for f in os.listdir('./sim_output/title_full_text/bing-api/'):
+for f in os.listdir('../sim_output/H TS 1P TOP 2/bing-api/'):
   if f.startswith('session_title_full_text_steps'):
-    df = pd.read_csv('./sim_output/title_full_text/bing-api/'+f)
+    df = pd.read_csv('../sim_output/H TS 1P TOP 2/bing-api/'+f)
     df['step'] = (df.index//17) +1
     dd = df.groupby("step")["SERP"].apply(list).to_dict()
     for step, values in dd.items():
       results_4[step].extend(values)
 
 results_5 = {step: [] for step in range(1,6)}
-for f in os.listdir('./sim_output/paragraph_full_text/bing-api/'):
+for f in os.listdir('../sim_output/H 1P TS 1P TOP 2/bing-api/'):
   if f.startswith('session_paragraph_full_text_steps'):
-    df = pd.read_csv('./sim_output/paragraph_full_text/bing-api/'+f)
+    df = pd.read_csv('../sim_output/H 1P TS 1P TOP 2/bing-api/'+f)
     #df['step'] = (df.index//17) +1
     dd = df.groupby("STEP")["SERP"].apply(list).to_dict()
     for step, values in dd.items():
       results_5[step].extend(values)
 
 results_6 = {step: [] for step in range(1,6)}
-for f in os.listdir('./sim_output/full_text_full_text/bing-api/'):
+for f in os.listdir('../sim_output/FT TS 1P TOP 2/bing-api/'):
   if f.startswith('session_full_text_full_text_steps'):
-    df = pd.read_csv('./sim_output/full_text_full_text/bing-api/'+f)
+    df = pd.read_csv('../sim_output/FT TS 1P TOP 2/bing-api/'+f)
     #df['step'] = (df.index//17) +1
     dd = df.groupby("STEP")["SERP"].apply(list).to_dict()
     for step, values in dd.items():
       results_6[step].extend(values)
 
-newsguard = pd.read_csv('./data/overall_bias.csv', sep=';')
+newsguard = pd.read_csv('../data/overall_bias.csv', sep=';')
 scores = {}
 
 # step = int(sys.argv[1])
@@ -167,6 +167,8 @@ plt.gca().spines['left'].set_visible(False)
 plt.gca().spines['bottom'].set_visible(False)
 plt.gca().xaxis.set_ticks_position('none')
 plt.gca().yaxis.set_ticks_position('none')
+plt.ylabel('Avg. Newsguard Scores')
+plt.xlabel('Rank positions')
 plt.legend()
-plt.savefig('all-variants.png')
+plt.savefig('sim_rank.png')
 plt.show()
